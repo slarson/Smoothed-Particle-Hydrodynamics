@@ -2,6 +2,8 @@
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
+#include <Python.h>
+#include "PyramidalSimulation.h"
 
 float calcDelta();
 extern const float delta = calcDelta();
@@ -15,9 +17,15 @@ unsigned int * gridNextNonEmptyCellBuffer;
 extern int gridCellCount;
 extern float muscle_activation_signal;
 
+//mv
+PyramidalSimulation simulation;
+using namespace std;
+
 owPhysicsFluidSimulator::owPhysicsFluidSimulator(owHelper * helper)
 {
 	//int generateInitialConfiguration = 1;//1 to generate initial configuration, 0 - load from file
+
+
 
 	try{
 		if(generateInitialConfiguration)
@@ -27,6 +35,8 @@ owPhysicsFluidSimulator::owPhysicsFluidSimulator(owHelper * helper)
 		// LOAD FROM FILE
 		owHelper::preLoadConfiguration();	
 											//=======================
+		//mv experimentation:
+		simulation.setup();
 
 		positionBuffer = new float[ 8 * PARTICLE_COUNT ];
 		velocityBuffer = new float[ 4 * PARTICLE_COUNT ];
@@ -88,7 +98,10 @@ double owPhysicsFluidSimulator::simulationStep()
 		printf("_Total_step_time:\t%9.3f ms\n",helper->get_elapsedTime());
 		printf("------------------------------------\n");
 		iterationCount++;
-		muscle_activation_signal *= 0.9f;
+		//let's call a Python simulation
+		//changed from 0.9f to 0.1f by MV as initial experiment
+		//now let's try a constant activation signal:
+		muscle_activation_signal = simulation.run();//0.9f;
 		return helper->get_elapsedTime();
 	}catch(std::exception &e){
 		std::cout << "ERROR: " << e.what() << std::endl;
