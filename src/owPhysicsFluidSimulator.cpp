@@ -2,6 +2,8 @@
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
+#include <Python.h>
+#include "PyramidalSimulation.h"
 
 float calcDelta();
 extern const float delta = calcDelta();
@@ -14,6 +16,9 @@ int * _particleIndex;
 unsigned int * gridNextNonEmptyCellBuffer;
 extern int gridCellCount;
 extern float * muscle_activation_signal_buffer;
+
+PyramidalSimulation simulation;
+using namespace std;
 
 owPhysicsFluidSimulator::owPhysicsFluidSimulator(owHelper * helper)
 {
@@ -28,16 +33,19 @@ owPhysicsFluidSimulator::owPhysicsFluidSimulator(owHelper * helper)
 		owHelper::preLoadConfiguration();	
 											//=======================
 
+		simulation.setup()
+
 		positionBuffer = new float[ 8 * PARTICLE_COUNT ];
 		velocityBuffer = new float[ 4 * PARTICLE_COUNT ];
 		_particleIndex = new   int[ 2 * PARTICLE_COUNT ];
 		gridNextNonEmptyCellBuffer = new unsigned int[gridCellCount+1];
 		muscle_activation_signal_buffer = new float [MUSCLE_COUNT];
 
-		for(int i=0;i<MUSCLE_COUNT;i++)
-		{
-			muscle_activation_signal_buffer[i] = 0.f;
-		}
+		muscle_activation_signal_buffer = simulation.run();
+//		for(int i=0;i<MUSCLE_COUNT;i++)
+//		{
+//			muscle_activation_signal_buffer[i] = 0.f;
+//		}
 
 		//The buffers listed below are only for usability and debug
 		densityBuffer = new float[ 1 * PARTICLE_COUNT ];
