@@ -33,7 +33,7 @@ owPhysicsFluidSimulator::owPhysicsFluidSimulator(owHelper * helper)
 		owHelper::preLoadConfiguration();	
 											//=======================
 
-		simulation.setup()
+		simulation.setup();
 
 		positionBuffer = new float[ 8 * PARTICLE_COUNT ];
 		velocityBuffer = new float[ 4 * PARTICLE_COUNT ];
@@ -42,6 +42,7 @@ owPhysicsFluidSimulator::owPhysicsFluidSimulator(owHelper * helper)
 		muscle_activation_signal_buffer = new float [MUSCLE_COUNT];
 
 		muscle_activation_signal_buffer = simulation.run();
+
 //		for(int i=0;i<MUSCLE_COUNT;i++)
 //		{
 //			muscle_activation_signal_buffer[i] = 0.f;
