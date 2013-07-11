@@ -97,13 +97,13 @@ void owHelper::generateConfiguration(int stage, float *position_cpp, float *velo
 	int ny = (int)( ( YMAX - YMIN ) / r0 ); //Y
 	int nz = (int)( ( ZMAX - ZMIN ) / r0 ); //Z
 
-	int nEx = 5*0;//7
-	int nEy = 3*0;//4
-	int nEz = 9*0;//25
-	int nMuscles = 5;
+	int nEx = 4*1;//7
+	int nEy = 2*1;//4
+	int nEz = 7*1;//25
+	int nMuscles = 26;
 	int nM,nMi,nMj;
 	//int numOfMembraneParticles = (nx*2/3-3)*(nz*2/3-3);
-	int numOfMembraneParticles = (nx-3)*(nz-3);
+	int numOfMembraneParticles = 0*(nx-3)*(nz-3);
 
 	if(stage==0)
 	{
@@ -125,9 +125,9 @@ void owHelper::generateConfiguration(int stage, float *position_cpp, float *velo
 		for(z=0;z<nEz;z+=1.f)
 		{
 			//write particle coordinates to corresponding arrays
-			position_cpp[ 4 * i + 0 ] = XMAX/2+x*r0-nEx*r0/2 - r0*(nEx)/2 + r0*(nEx+0.4)*(nM>2);
-			position_cpp[ 4 * i + 1 ] = YMAX/2+y*r0-nEy*r0/2 - YMAX*0.4;
-			position_cpp[ 4 * i + 2 ] = ZMAX/2+z*r0-nEz*r0/2 - (nM<=2)*(nM-1)*(nEz*r0) - (nM>2)*(r0/2+(nM-4)*r0)*nEz - (nM==1)*r0/2.5 - (nM==2)*r0*2/2.5 + (nM==4)*r0/2.5;
+			position_cpp[ 4 * i + 0 ] = XMAX/2+x*r0-nEx*r0/2 - r0*(nEx)/2 + r0*(nEx+0.4)*(nM>nMuscles/2-1/**/);
+			position_cpp[ 4 * i + 1 ] = YMAX/2+y*r0-nEy*r0/2 - YMAX*0.2;
+			position_cpp[ 4 * i + 2 ] = ZMAX/2+z*r0-nEz*r0/2 + nEz*r0*nMuscles/5 - (nM<=nMuscles/2-1/**/)*(nM-1)*(nEz*r0) - (nM>nMuscles/2-1/**/)*(/*r0/2+*/(nM-nMuscles/2-1))*(nEz*r0);// - (nM==(5-1))*r0/2.5 - (nM==5)*r0*2/2.5 + (nM==(10))*r0*2/2.5;
 			position_cpp[ 4 * i + 3 ] = p_type;
 
 			velocity_cpp[ 4 * i + 0 ] = 0;
@@ -139,6 +139,7 @@ void owHelper::generateConfiguration(int stage, float *position_cpp, float *velo
 		}
 
 		//now add membrane
+		/*
 		for(x=2;x<nx-1.5;x+=1.0)
 		for(z=2;z<nz-1.5;z+=1.0)
 		{
@@ -155,6 +156,8 @@ void owHelper::generateConfiguration(int stage, float *position_cpp, float *velo
 
 			i++;
 		}
+		*/
+		
 
 		float r2ij;
 		float dx2,dy2,dz2;
@@ -268,9 +271,9 @@ void owHelper::generateConfiguration(int stage, float *position_cpp, float *velo
 		i++; // necessary for both stages
 	}*/
 
-	for(x = (XMAX-XMIN)/2-(6+18*0)*r0;x<(XMAX-XMIN)/2+r0*(6+18*0);x += r0)
-	for(y = r0*79-25*0;y<(YMAX-YMIN)*0.0+r0*92;y += r0)
-	for(z = (ZMAX-ZMIN)/2-(6+30*0)*r0;z<(ZMAX-ZMIN)/2+r0*(6+30*0);z += r0)
+	for(x = (XMAX-XMIN)/2-(1+18*0)*r0;x<(XMAX-XMIN)/2+r0*(1+18*0);x += r0)
+	for(y = r0*20/*79*/-25*0;y<(YMAX-YMIN)*0.0+r0*25/*92*/;y += r0)
+	for(z = (ZMAX-ZMIN)/2-(1+30*0)*r0;z<(ZMAX-ZMIN)/2+r0*(1+30*0);z += r0)
 	{
 						// stage==0 - preliminary run
 		if(stage==1)	// stage==1 - final run
@@ -287,7 +290,7 @@ void owHelper::generateConfiguration(int stage, float *position_cpp, float *velo
 			position_cpp[ 4 * i + 3 ] = p_type;
 
 			velocity_cpp[ 4 * i + 0 ] = 0;
-			velocity_cpp[ 4 * i + 1 ] = -0.027;
+			velocity_cpp[ 4 * i + 1 ] = 0;//-0.027;
 			velocity_cpp[ 4 * i + 2 ] = 0;
 			velocity_cpp[ 4 * i + 3 ] = p_type;//if particle type is already defined in 'position', we don't need its duplicate here, right?
 		}
@@ -472,7 +475,7 @@ void owHelper::generateConfiguration(int stage, float *position_cpp, float *velo
 		}
 
 		//numOfMembranes = 2;
-		numOfMembranes = (nz-3-1-2*2)*(nx-3-1-2*2)*2;
+		numOfMembranes = (nz-3-1-2*2)*(nx-3-1-2*2)*2*0;
 	}
 	else
 	if(stage==1)
@@ -496,6 +499,7 @@ void owHelper::generateConfiguration(int stage, float *position_cpp, float *velo
 		int mc = 0;//membrane counter
 
 		// create membranes using recently generated elastic matter plane
+		/*
 		for(int ix = 2; ix<(nx-3)-1-2; ix++)
 		{
 			for(int iz = 2; iz<(nz-3)-1-2; iz++)
@@ -528,6 +532,7 @@ void owHelper::generateConfiguration(int stage, float *position_cpp, float *velo
 				}
 			}		
 		}
+		*/
 		
 
 		///////////////debug////////////

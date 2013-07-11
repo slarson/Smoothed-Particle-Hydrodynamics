@@ -767,7 +767,7 @@ __kernel void pcisph_computeElasticForces(
 					if((int)(elasticConnectionsData[idx+nc].z)==(i+1))//contractible spring, = muscle
 					{
 						if(muscle_activation_signal[i]>0.f)
-							acceleration[ id ] += -(vect_r_ij/r_ij) * muscle_activation_signal[i] * 500.f;
+							acceleration[ id ] += -(vect_r_ij/r_ij) * muscle_activation_signal[i] * 900.f;
 					}
 				}
 			}

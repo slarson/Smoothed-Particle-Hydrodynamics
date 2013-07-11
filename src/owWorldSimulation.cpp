@@ -26,7 +26,7 @@ GLsizei viewHeight, viewWidth;
 int winIdMain;
 int PARTICLE_COUNT = 0;
 int PARTICLE_COUNT_RoundedUp = 0;
-int MUSCLE_COUNT = 10;//increase this value and modify corresponding code if you plan to add more than 10 muscles
+int MUSCLE_COUNT = 30;//increase this value and modify corresponding code if you plan to add more than 10 muscles
 double totalTime = 0;
 int frames_counter = 0;
 double calculationTime;
