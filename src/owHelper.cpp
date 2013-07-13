@@ -97,9 +97,9 @@ void owHelper::generateConfiguration(int stage, float *position_cpp, float *velo
 	int ny = (int)( ( YMAX - YMIN ) / r0 ); //Y
 	int nz = (int)( ( ZMAX - ZMIN ) / r0 ); //Z
 
-	int nEx = 4*1;//7
-	int nEy = 2*1;//4
-	int nEz = 7*1;//25
+	int nEx = 3*1;//7
+	int nEy = 3*1;//4
+	int nEz = 5*1;//25
 	int nMuscles = 26;
 	int nM,nMi,nMj;
 	//int numOfMembraneParticles = (nx*2/3-3)*(nz*2/3-3);
@@ -126,7 +126,7 @@ void owHelper::generateConfiguration(int stage, float *position_cpp, float *velo
 		{
 			//write particle coordinates to corresponding arrays
 			position_cpp[ 4 * i + 0 ] = XMAX/2+x*r0-nEx*r0/2 - r0*(nEx)/2 + r0*(nEx+0.4)*(nM>nMuscles/2-1/**/);
-			position_cpp[ 4 * i + 1 ] = YMAX/2+y*r0-nEy*r0/2 - YMAX*0.2;
+			position_cpp[ 4 * i + 1 ] = YMAX/2+y*r0-nEy*r0/2 - YMAX*0.35;
 			position_cpp[ 4 * i + 2 ] = ZMAX/2+z*r0-nEz*r0/2 + nEz*r0*nMuscles/5 - (nM<=nMuscles/2-1/**/)*(nM-1)*(nEz*r0) - (nM>nMuscles/2-1/**/)*(/*r0/2+*/(nM-nMuscles/2-1))*(nEz*r0);// - (nM==(5-1))*r0/2.5 - (nM==5)*r0*2/2.5 + (nM==(10))*r0*2/2.5;
 			position_cpp[ 4 * i + 3 ] = p_type;
 
@@ -271,9 +271,9 @@ void owHelper::generateConfiguration(int stage, float *position_cpp, float *velo
 		i++; // necessary for both stages
 	}*/
 
-	for(x = (XMAX-XMIN)/2-(1+18*0)*r0;x<(XMAX-XMIN)/2+r0*(1+18*0);x += r0)
-	for(y = r0*20/*79*/-25*0;y<(YMAX-YMIN)*0.0+r0*25/*92*/;y += r0)
-	for(z = (ZMAX-ZMIN)/2-(1+30*0)*r0;z<(ZMAX-ZMIN)/2+r0*(1+30*0);z += r0)
+	for(x = (XMAX-XMIN)/2-(1+13*1)*r0;x<(XMAX-XMIN)/2+r0*(1+13*1);x += r0)
+	for(y = r0*8/*79*/-25*0;y<(YMAX-YMIN)*0.0+r0*13/*92*/;y += r0)
+	for(z = (ZMAX-ZMIN)/2-(1+70*1)*r0;z<(ZMAX-ZMIN)/2+r0*(1+70*1);z += r0)
 	{
 						// stage==0 - preliminary run
 		if(stage==1)	// stage==1 - final run

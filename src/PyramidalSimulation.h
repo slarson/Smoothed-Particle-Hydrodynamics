@@ -1,8 +1,13 @@
 #ifndef PYRAMIDALSIMULATION_H
 #define PYRAMIDALSIMULATION_H
+#include <Python.h>
 #include <vector>
 
+//#pragma comment( lib, "C:\\Python27\\libs\\python27.lib" )
+
 using namespace std;
+
+
 
 class PyramidalSimulation{
 

@@ -97,6 +97,7 @@ void display(void)
 
 	ec_cpp = fluid_simulation->getElasticConnectionsData_cpp();
 	
+	int muscle_id;
 	//if(generateInitialConfiguration)
 	for(int i_ec=0; i_ec < numOfElasticP * NEIGHBOR_COUNT; i_ec++)
 	{
@@ -105,8 +106,15 @@ void display(void)
 		{
 			i = (i_ec / NEIGHBOR_COUNT);// + (generateInitialConfiguration!=1)*numOfBoundaryP;
 
-			glColor4b(255/2, 125/2, 0, 100/2/*alpha*/);
-			if(ec_cpp[ 4 * i_ec + 2 ]>1.f) glColor4b(255/2, 0, 0, 255/2/*alpha*/);
+			glColor4b(255/2, 255/2, 0, 100/2/*alpha*/);
+			if((muscle_id = ec_cpp[ 4 * i_ec + 2 ])>=1) 
+			{
+				float m_a = muscle_activation_signal_cpp[muscle_id-1];
+
+				glColor4b(255*(m_a)/2, 0, 255*(1-m_a)/2, 255/2/*alpha*/);
+				//printf("==[muscle_id = %d]==\n",muscle_id);
+			}
+			//muscle_activation_signal_cpp
 			
 			glBegin(GL_LINES);
 			glVertex3f( (p_cpp[i*4]-XMAX/2)*sc , (p_cpp[i*4+1]-YMAX/2)*sc, (p_cpp[i*4+2]-ZMAX/2)*sc );

@@ -116,7 +116,7 @@ double owPhysicsFluidSimulator::simulationStep()
 		vector<float> muscle_vector = simulation.run();
 		for(int i=0; i<MUSCLE_COUNT; i++){
 				for (long index = 0; index < muscle_vector.size(); index++){
-					muscle_activation_signal_buffer[index] = muscle_vector[index];
+					muscle_activation_signal_cpp[index] = muscle_vector[index];
 				}
 		}
 

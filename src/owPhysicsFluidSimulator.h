@@ -17,6 +17,7 @@ public:
 	unsigned int * getParticleIndex_cpp() { ocl_solver->read_particleIndex_buffer( particleIndex_cpp ); return particleIndex_cpp; };
 	//TODO helper functions delete after fix!!
 	float * getElasticConnectionsData_cpp() { return elasticConnectionsData_cpp; };
+	//float * getMuscleActivationSignal_cpp() { return muscle_activation_signal_cpp; };
 	int   * getMembraneData_cpp() { return membraneData_cpp; };
 	double  simulationStep();
 

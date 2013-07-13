@@ -2,6 +2,7 @@
 #define OW_OPENCL_SOLVER_H
 
 #pragma comment( lib, "opencl.lib" )							// opencl.lib
+	
 
 #if defined(__APPLE__) || defined(__MACOSX)
 	#include <OpenCL/cl.hpp>
