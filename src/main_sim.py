@@ -19,7 +19,7 @@ def parallel_waves(n=26, #26 for our first test?
     row_positions = np.linspace(0,1.5*2*math.pi,j)
 
     wave_1 = (map(math.sin,(row_positions - velocity*time)))
-    wave_2 = (map(math.sin,(row_positions + (math.pi / 2) - velocity*time)))
+    wave_2 = (map(math.sin,(row_positions + (math.pi) - velocity*time)))
 
     normalize_sine = lambda x : (x + 1)/2
     wave_1 = map(normalize_sine, wave_1)
