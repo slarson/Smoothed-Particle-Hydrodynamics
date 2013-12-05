@@ -90,7 +90,7 @@ int generateWormShell(int stage, int i_start,float *position_cpp, float *velocit
 	float *positionVector;
 	float *velocityVector;
 	float xc = XMAX*0.5f;
-	float yc = YMAX*0.3f;
+	float yc = YMAX*0.4f;
 	float zc = ZMAX*0.5f;
 	int elasticLayers = 1;//starting value
 	float PI = 3.1415926536f;
@@ -536,7 +536,7 @@ int generateInnerWormLiquid(int stage, int i_start,float *position_cpp, float *v
 	float value;
 	int elasticLayers;//starting from 2, because 1 is for outer shell and doesn't contain liquid particles
 	float xc = XMAX*0.5f;
-	float yc = YMAX*0.3f;
+	float yc = YMAX*0.4f;
 	float zc = ZMAX*0.5f;
 	float PI = 3.1415926536f;
 	float beta;
@@ -649,7 +649,7 @@ int generateInnerWormLiquid(int stage, int i_start,float *position_cpp, float *v
 	//and here we add outer liquid for worm swimming
 	for(x=3*r0;x<XMAX-3*r0;x+=r0)
 	{
-		for(y=3*r0;y<YMAX*0.15/*-r0*/;y+=r0)
+		for(y=3*r0;y<YMAX*0.25/*-r0*/;y+=r0)
 		{
 			for(z=3*r0;z<ZMAX-3*r0;z+=r0)
 			{
