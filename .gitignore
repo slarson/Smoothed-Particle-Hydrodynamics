@@ -1,7 +1,13 @@
+/src/main_sim.py3
+/src/main_sim2.py
+/src/main_sim.py~
+/Release/Sibernetic
+*~
 # Compiled Object files
 *.slo
 *.lo
 *.o
+*.d
 
 # Compiled Dynamic libraries
 *.so
@@ -10,6 +16,15 @@
 *.lai
 *.la
 *.a
+
+#Simulation output
+buffers/connection_buffer.txt
+buffers/membranes_buffer.txt
+buffers/position_buffer.txt
+
+#Python bytecode
+*.pyc
+
 #MY OTHER FILTERS
 *.ncb
 *.suo
@@ -23,3 +38,27 @@
 *.obj
 *.pdb
 *.res
+/buffers
+/logs
+/out_config
+/release
+rebuild.sh
+rebuildandrun.sh
+./x86_64
+
+#Apple stuff
+.DS_Store
+build
+/Build
+/debug
+/Release
+
+x86_64
+/*.dat
+src/*.dat
+
+simulations
+/figure_1.png
+/sibernetic_NEURON/
+/CElegansNeuroML/
+/sib.env
